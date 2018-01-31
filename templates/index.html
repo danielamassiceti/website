@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>daniela massiceti</title>
+
+<link href="{{ url_for('static', filename='main.css')}}" rel="stylesheet" type="text/css" media="screen"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='twitter-bootstrap.css')}}" />
+<link rel="shortcut icon" href="{{ url_for('static', filename='tabby.ico')}}" >
+<link rel="icon" href="{{ url_for('static', filename='tabby.ico')}}">
+
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa" />
+
+<meta name="keywords" content="daniela massiceti, university of oxford, phd student, phil torr, torr vision group, computer vision, oxford">
+<meta name="description" content="daniela massiceti // computer vision PhD student" />
+<meta name="p:domain_verify" content="15f149f4e12ce0bf04ad541a6e0d8a62"/>
+
+</head>
+
+<body>
+<div id="wrapper">
+  <header id="top">
+    <a href="http://za.linkedin.com/pub/daniela-massiceti/66/422/425"><img id="linkedin" src="{{ url_for('static', filename='socialmediaicons/linkedin.png')}}" width="30" height="30" title="linkedin" alt="linkedin"/></a>
+    <a href="mailto:daniela@robots.ox.ac.uk?Subject="email" target="_top"><img id="mail" src="{{ url_for('static', filename='socialmediaicons/mail_newcolour.png')}}" width="30" height="30" title="mail: daniela@robots.ox.ac.uk" alt="mail"/></a>
+    <a href="https://www.twitter.com/DanniMassi/"><img id="twitter" src="{{ url_for('static', filename='socialmediaicons/twitter.png')}}" width="30" height="30" title="twitter: @DanniMassi" alt="twitter"/></a>
+  </header>
+  
+  <div id="headerimg">
+    <a href="{{ url_for('home') }}">
+      <div class = "h">Daniela Massiceti</div>
+    </a>
+	<div class ="subh"> D.Phil Student in Computer Vision, University of Oxford </div>
+  </div>
+  <hr id="tophr">
+  <hr id="bottomhr">
+  
+  <div id="mainbody">
+  <ul class="img-list">
+  
+
+  <li>
+    <a href="{{ url_for('static', filename='')}}{{ cv }}" target=_blank>
+    <img src="{{ url_for('static', filename='homepageimages/cv.png')}}" width="300" height="300" alt=""/>
+    <span class="text-content"><span>cv</span></span>
+    </a>
+  </li>
+  
+  <li>
+    <a href="{{ url_for('about') }}">
+      <img src="{{ url_for('static', filename='homepageimages/about.png')}}" width="300" height="300" alt=""/>
+      <span class="text-content"><span>about</span></span>
+    </a>
+  </li>
+   
+  <li>
+    <a href="{{ url_for('research') }}">
+      <img src="{{ url_for('static', filename='homepageimages/research.png') }}" width="300" height="300" alt=""/>
+      <span class="text-content"><span>research</span></span>
+    </a>
+  </li>
+</ul>
+  </div>
+  <div id="footerwrapper"> 
+	<div id="email"> daniela_at_robots.ox.ac.uk </div>
+  <img src="{{ url_for('static', filename='robotgirl.png') }}" alt=""/>
+  </div>
+  </div>
+</div>
+</body>
+</html>

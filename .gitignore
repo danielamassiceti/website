@@ -1,0 +1,4 @@
+research/flipdial/static/visdial_resources/*.pth
+research/flipdial/static/visdial_resources/*.pt
+*.pyc
+static/danielamassiceti_cv*.pdf

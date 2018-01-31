@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>daniela massiceti // about</title>
+
+<link href="{{ url_for('static', filename='main.css')}}" rel="stylesheet" type="text/css" media="screen"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='twitter-bootstrap.css')}}" />
+<link rel="shortcut icon" href="{{ url_for('static', filename='tabby.ico')}}" >
+<link rel="icon" href="{{ url_for('static', filename='tabby.ico')}}">
+
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa" />
+
+<meta name="keywords" content="daniela massiceti, university of oxford, phd student, phil torr, torr vision group, computer vision, oxford">
+<meta name="description" content="daniela massiceti // computer vision PhD student" />
+<meta name="p:domain_verify" content="15f149f4e12ce0bf04ad541a6e0d8a62"/>
+
+</head>
+
+<body>
+<div id="wrapper">
+	<header id="top">
+    <a href="http://za.linkedin.com/pub/daniela-massiceti/66/422/425"><img id="linkedin" src="{{ url_for('static', filename='socialmediaicons/linkedin.png')}}" width="30" height="30" title="linkedin" alt="linkedin"/></a>
+    <a href="mailto:daniela@robots.ox.ac.uk" target="_top"><img id="mail" src="{{ url_for('static', filename='socialmediaicons/mail_newcolour.png')}}" width="30" height="30" title="mail: daniela@robots.ox.ac.uk" alt="mail"/></a>
+    <a href="https://www.twitter.com/DanniMassi/"><img id="twitter" src="{{ url_for('static', filename='socialmediaicons/twitter.png')}}" width="30" height="30" title="twitter: @DanniMassi" alt="twitter"/></a>
+  	</header>
+   
+  <div id="headerimg">
+    <a href="{{ url_for('home') }}">
+      <div class = "h">Daniela Massiceti</div>
+    </a>
+	  <div class ="subh">D.Phil Student in Computer Vision, University of Oxford </div>
+  </div>
+ 	<hr id="tophr"> 
+	<nav class="navigationbar">
+    		<ul>
+          <li><a class="normal" href="{{ url_for('home') }}" id=" ">home</a></li>
+          <li><a class="normal" href="{{ url_for('about') }}" id="currentPage">about</a></li>
+          <li><a class="normal" href="{{ url_for('research') }}" id=" ">research</a></li>
+          <li><a href="{{ url_for('static', filename='')}}{{ cv }}" target=_blank id=" ">cv</a></li>
+    		</ul>
+  	</nav>
+	<hr id="bottomhr">
+  	<div id="mainbody">
+  		<div class="side-by-side">
+        <p> Daniela is currently a D.Phil student in the Engineering Science department and a graduate member of <span><a href="http://www.pmb.ox.ac.uk/" target=_blank>Pembroke
+            College</a></span> at the University of Oxford, United Kingdom. She is part of <span><a href="http://www.robots.ox.ac.uk/~tvg/" target=_blank>Torr Vision
+            Group</a></span>, under the joint supervision of Professor Philip Torr and <span><a href="http://www.oxsight.co" target=_blank>Dr Stephen Hicks</a></span>.</p>
+    			<p> Prior to this, she completed a M.Sc in Neuroscience also at the University of Oxford, where she graduated with distinction. She obtained her undergraduate degree, a B.Sc in Electrical and Computer Engineering, at the University of Cape Town, South Africa. </p>
+			<p> Her current research interests include using vision and language models for semantic scene parsing, in particular toward developing visual prostheses to aid the visually-impaired. </p>
+  		</div>
+      <div class="side-by-side"> <img id="me" src="{{ url_for('static', filename='about_photo.jpg') }}" width="335" style="padding-left: 43px;"/> </div>
+  	</div>
+  
+  	<div id="footerwrapper">
+		<div id="email"> daniela_at_robots.ox.ac.uk </div>
+    <img src="{{ url_for('static', filename='robotgirl.png') }}" alt=""/>
+	</div>
+  </div>
+</div>
+</body>
+</html>
