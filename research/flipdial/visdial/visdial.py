@@ -1,16 +1,11 @@
-#import sys, os, time, math, gc, json
-#import numpy as np
 import torch, os, inflect, pickle
 from torch.autograd import Variable
 from PIL import Image
 import torch.nn as nn
-#import torch.backends.cudnn as cudnn
 import torchvision.transforms as transforms
-#import torchvision.datasets as datasets
 
 #user-defined classes
 import generativemodels as models
-#import losses
 import samplers
 import utils
 

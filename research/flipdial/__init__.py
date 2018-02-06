@@ -17,7 +17,7 @@ def initialise_model():
     imglist = os.listdir(os.path.join(_flipdial.static_folder, 'thumbnails'))
     caps = pickle.load(open(os.path.join(_flipdial.static_folder, 'cap_dict'), 'rb'))
     vd = visdial.VisDial(_flipdial.static_folder)
-    print vd
+
 
 def root_dir():  # pragma: no cover
     return os.path.abspath(os.path.dirname(__file__))
@@ -28,16 +28,19 @@ def home():
 
 @_flipdial.route('/demo', methods=['GET', 'POST'])
 def demo():
-    global maxchatlen, chat, imglist, caps, img_to_load
+    global maxchatlen, chat, imglist, caps, vd, img_to_load, cv
     default_img = 'COCO_val2014_000000524382.jpg'
+
+    if not vd:
+        initialise_model()
     
     if request.method=='POST' and len(chat) < maxchatlen :
         if 'reset' in request.form.keys():
             chat = []
-            return render_template('flipdial_demo.html', chat=chat, scroll='demo', autofocus='autofocus', questiontext='enter your question...', imgs=imglist,
-                    img_to_load=img_to_load, cv=cv)
+            return render_template('flipdial_demo.html', chat=chat, scroll='demo', autofocus='autofocus', questiontext='enter your question...', imgs=imglist, img_to_load=img_to_load, cv=cv)
             
         elif 'question' in request.form.keys():
+	    return 'h1'
             question = request.form['question']
             t = len(chat)*2
 
@@ -50,26 +53,25 @@ def demo():
 
             item = (question, answers)
             chat.append(item)
-            print chat
             #img_to_load = ( url_for('.static', filename=os.path.join('images', default_img)), caps[default_img] )
-            return render_template('flipdial_demo.html', chat=chat, scroll='demo', autofocus='autofocus', questiontext='', imgs=imglist,
-                    img_to_load=img_to_load, cv=cv)
+            return render_template('flipdial_demo.html', chat=chat, scroll='demo', autofocus='autofocus', questiontext='', imgs=imglist, img_to_load=img_to_load, cv=cv)
         elif 'img_to_load' in request.form.keys():
             
             # empty chat
             chat = []
             
             # get image selected
-            imgname = request.form['img_to_load']
-            img_path = os.path.join(_flipdial.static_folder, 'images', imgname)
-            img_to_load = ( url_for('.static', filename=os.path.join('images', imgname)), '' )
+            #imgname = request.form['img_to_load']
+            #img_path = os.path.join(_flipdial.static_folder, 'images', imgname)
+            #img_to_load = ( url_for('.static', filename=os.path.join('images', imgname)), '' )
 
             # set new image and caption features
-            vd.reset(img_path, caps[imgname])
-
-            return render_template('flipdial_demo.html', chat=chat, scroll='demo', questiontext='enter your question...', imgs=imglist, img_to_load=img_to_load, cv=cv)
+            #vd.reset(img_path, caps[imgname])
+	    return 'pass' 
+            #return render_template('flipdial_demo.html', chat=chat, scroll='demo', questiontext='enter your question...', imgs=imglist, img_to_load=img_to_load, cv=cv)
 
         elif 'upload_img' in request.files.keys():
+            return 'h2'
             
             # empty chat
             chat = []
@@ -89,7 +91,7 @@ def demo():
             
             return render_template('flipdial_demo.html', chat=chat, scroll='demo', questiontext='enter your question...', imgs=imglist, img_to_load=img_to_load, cv=cv)
     else:
-        
+        return 'h3' 
         # empty chat
         chat = []
 
@@ -100,15 +102,15 @@ def demo():
         img_to_load = ( url_for('.static', filename=os.path.join('images', default_img)), '' )
         return render_template('flipdial_demo.html', chat=chat, questiontext="enter your question...", imgs=imglist, img_to_load=img_to_load, cv=cv )
 
-@_flipdial.route('/projects/flipdial/more_examples')
+@_flipdial.route('/more_examples')
 def moreexamples():
     return render_template('flipdial_moreexamples.html')
 
-@_flipdial.route('/projects/flipdial/paper')
+@_flipdial.route('/paper')
 def paper():
     return render_template('arxiv.html')
 
-@_flipdial.route('/projects/flipdial/code')
+@_flipdial.route('/code')
 def code():
     return render_template('github.html')
 
