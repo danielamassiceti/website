@@ -6,8 +6,9 @@ from research import stereosonic_vision as sv
 from research import flipdial as fd
 
 app = Flask(__name__)
+app.template_folder = os.path.join(app.root_path, 'templates')
 
-cv = 'danielamassiceti_cv_jan2018.pdf'
+cv = 'danielamassiceti_cv_nov2017.pdf'
 
 app.register_blueprint(_rfs_vs_nns, url_prefix='/research/rfs_vs_nns')
 app.register_blueprint(_bottom_up_top_down, url_prefix='/research/bottom_up_top_down')
@@ -18,7 +19,6 @@ app.register_blueprint(sv._stereosonic_vision, url_prefix='/research/stereosonic
 fd.initialise_model()
 fd.set_cv(cv)
 app.register_blueprint(fd._flipdial, url_prefix='/research/flipdial')
-
 
 @app.route('/')
 @app.route('/home')
@@ -35,4 +35,4 @@ def research():
     return render_template('research.html', cv=cv)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

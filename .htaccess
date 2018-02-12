@@ -1,0 +1,12 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f 
+# Don't interfere with static files
+RewriteRule ^(.*)$ /users/daniela/wsgi_bin/dani_robots.wsgi/ [L]
+
+
+#Options +FollowSymLinks -MultiViews
+#RewriteEngine on
+#RewriteBase /
+#RewriteRule "^~daniela/$" "/cgi-bin/Users/daniela/dani.cgi" [R=403,NC,L]
+#Order Allow,Deny
+#Allow from all
