@@ -9,8 +9,8 @@ app = Flask(__name__)
 app.template_folder = os.path.join(app.root_path, 'templates')
 
 cv = 'danielamassiceti_cv_feb2018.pdf'
-vd_host = '127.67.94.34'
-vd_port = 11223344
+vd_host = '129.67.94.221'
+vd_port = 16688
 
 app.register_blueprint(_rfs_vs_nns, url_prefix='/research/rfs_vs_nns')
 app.register_blueprint(_bottom_up_top_down, url_prefix='/research/bottom_up_top_down')
