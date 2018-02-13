@@ -1,28 +1,30 @@
 from flask import Blueprint, request, render_template, url_for, redirect
 import os, uuid, pickle, itertools, requests, json
 
-global maxchatlen, chat, imglist, caps, img_to_load, cv, current_img_path, current_cap
-maxchatlen = 10
-chat = []
-    
 _flipdial = Blueprint('flipdial', __name__, template_folder='templates', static_folder='static', static_url_path='/static')
-imglist = os.listdir(os.path.join(_flipdial.static_folder, 'thumbnails'))
-caps = pickle.load(open(os.path.join(_flipdial.static_folder, 'cap_dict'), 'rb'))
 
-vd_server = 'http://129.67.94.221'
-vd_port = '26736'
+global params
+global chat, img_to_load, current_img_path, current_cap
 
-def set_cv(cv_path):
-    global cv
-    cv = cv_path
+def set_global_params(cv_path, vd_host, vd_port):
+    global params, chat
+    params = {}
+    params['maxchatlen'] = 10
+    params['imglist'] = os.listdir(os.path.join(_flipdial.static_folder, 'thumbnails'))
+    params['caps'] = pickle.load(open(os.path.join(_flipdial.static_folder, 'cap_dict'), 'rb'))
+    params['cv'] = cv_path
+    params['vd_host'] = vd_host
+    params['vd_port'] = vd_port
+    chat = []
 
-def get_vd_url(t, question, img_path, caption, chat):
-    vd_url = vd_server + ':' + vd_port + '/get_answer?'
+def get_vd_url(t, question, img_path, caption, history):
+    global params
+    vd_url = params['vd_host'] + ':' + str(params['vd_port']) + '/get_answer?'
     vd_url += 't=' + str(t)
     vd_url += '&question=' + question
     vd_url += '&img_path=' + img_path
     vd_url += '&caption=' + caption
-    vd_url += '&history=' + json.dumps(chat)
+    vd_url += '&history=' + json.dumps(history)
     return vd_url
     
 def ravel_answers(answers):
@@ -30,33 +32,35 @@ def ravel_answers(answers):
 
 @_flipdial.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('flipdial.html', cv=cv)
+    global params
+    return render_template('flipdial.html', cv=params['cv'])
 
 @_flipdial.route('/demo', methods=['GET', 'POST'])
 def demo():
-    global maxchatlen, chat, imglist, caps, img_to_load, cv, current_img_path, current_cap
+    global params
+    global chat, img_to_load, current_img_path, current_cap
     default_img = 'COCO_val2014_000000524382.jpg'
 
-    if request.method=='POST' and len(chat) < maxchatlen :
+    if request.method=='POST' and len(chat) < params['maxchatlen']:
         if 'reset' in request.form.keys():
             chat = []
-            return render_template('flipdial_demo.html', chat=chat, scroll='demo', autofocus='autofocus', questiontext='enter your question...', imgs=imglist, img_to_load=img_to_load, cv=cv)
+            return render_template('flipdial_demo.html', chat=chat, scroll='demo', autofocus='autofocus', questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
             
         elif 'question' in request.form.keys():
             question = request.form['question']
             t = len(chat)*2
 
             # get answer by pinging server where flipdial model is loaded
-            vd_url = get_vd_url(t, question, img_path, caption, chat)
             try: 
-                answer = requests.get(get_vd_url(t, question, img_path, caption, chat)) # get answer
+            	vd_url = get_vd_url(t, question, img_path, caption, chat)
+                answer = requests.get(vd_url) # get answer
                 answers = ravel_answers(answer.text)
             except requests.exceptions.RequestException as e:  # This is the correct syntax
                 return e
 
             item = (question, answers)
             chat.append(item)
-            return render_template('flipdial_demo.html', chat=chat, scroll='demo', autofocus='autofocus', questiontext='', imgs=imglist, img_to_load=img_to_load, cv=cv)
+            return render_template('flipdial_demo.html', chat=chat, scroll='demo', autofocus='autofocus', questiontext='', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
         
         elif 'img_to_load' in request.form.keys(): # select image from panel
             
@@ -65,11 +69,11 @@ def demo():
             
             # get image selected
             imgname = request.form['img_to_load']
-            current_cap = caps[imgname]
+            current_cap = params['caps'][imgname]
             current_img_path = os.path.join(_flipdial.static_folder, 'images', imgname)
             img_to_load = ( url_for('.static', filename=os.path.join('images', imgname)), '' )
 
-            return render_template('flipdial_demo.html', chat=chat, scroll='demo', questiontext='enter your question...', imgs=imglist, img_to_load=img_to_load, cv=cv)
+            return render_template('flipdial_demo.html', chat=chat, scroll='demo', questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
 
         elif 'upload_img' in request.files.keys(): # upload own image
             
@@ -88,7 +92,7 @@ def demo():
             img_to_load = ( url_for('.static', filename=os.path.join('uploaded_images', unique_filename)), '' )
 
             
-            return render_template('flipdial_demo.html', chat=chat, scroll='demo', questiontext='enter your question...', imgs=imglist, img_to_load=img_to_load, cv=cv)
+            return render_template('flipdial_demo.html', chat=chat, scroll='demo', questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
     else: #standard page load
 
         # empty chat
@@ -96,18 +100,18 @@ def demo():
         
         # set image and caption to default options
         current_img_path = os.path.join(_flipdial.static_folder,'images', default_img)
-        current_cap = caps[default_img]
+        current_cap = params['caps'][default_img]
         
         img_to_load = ( url_for('.static', filename=os.path.join('images', default_img)), '' )
-        return render_template('flipdial_demo.html', chat=chat, questiontext="enter your question...", imgs=imglist, img_to_load=img_to_load, cv=cv )
+        return render_template('flipdial_demo.html', chat=chat, questiontext="enter your question...", imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'] )
 
-@_flipdial.route('/more_examples')
+@_flipdial.route('/2vd_demo')
 def moreexamples():
-    return render_template('flipdial_moreexamples.html')
+    return render_template('flipdial_2vd_demo.html')
 
 @_flipdial.route('/paper')
 def paper():
-    return render_template('arxiv.html')
+    return redirect('https://arxiv.org/abs/1802.03803')
 
 @_flipdial.route('/code')
 def code():
