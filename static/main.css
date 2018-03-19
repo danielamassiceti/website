@@ -9,6 +9,10 @@
     horizontal-align: center;
 } 
 
+.side-by-side p {
+    line-height: 180% !important;
+}
+
 #top  {
 	text-align: right;
 	font-size: small;

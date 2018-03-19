@@ -8,9 +8,9 @@ from research import flipdial as fd
 app = Flask(__name__)
 app.template_folder = os.path.join(app.root_path, 'templates')
 
-cv = 'danielamassiceti_cv_feb2018.pdf'
-vd_host = '129.67.94.221'
-vd_port = 16688
+cv = 'danielamassiceti_cv_mar2018b.pdf'
+vd_host = '129.67.94.52'
+vd_port = 8232
 
 app.register_blueprint(_rfs_vs_nns, url_prefix='/research/rfs_vs_nns')
 app.register_blueprint(_bottom_up_top_down, url_prefix='/research/bottom_up_top_down')

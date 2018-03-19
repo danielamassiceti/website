@@ -113,6 +113,7 @@
 #messagebox #answer_dropdown span {
   background-color: #E9826B;
   animation: unset;
+  margin: 1px;
 }
 
 #chatboxheader {

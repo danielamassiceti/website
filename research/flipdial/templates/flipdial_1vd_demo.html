@@ -15,6 +15,7 @@
 <meta name="keywords" content="daniela massiceti, university of oxford, phd student, phil torr, torr vision group, computer vision, oxford">
 <meta name="description" content="daniela massiceti // computer vision PhD student" />
 <meta name="p:domain_verify" content="15f149f4e12ce0bf04ad541a6e0d8a62"/>
+<meta property="og:image" content="{{ url_for('static', filename='robotgirl_onecolor.png') }}" />
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -29,6 +30,9 @@
 {% if scroll %}
 <script> document.location.hash = '#' + '{{ scroll }}'; </script>
 {% endif %}
+
+<script> $("#messagebox").animate({ scrollTop: $('#messagebox').prop("scrollHeight")}, 1000); </script>
+
 </head>
 
 <body>
@@ -133,11 +137,10 @@
 
 
 	  <hr id="tophr2">
-    <nav class="navigationbar navigationbar_x5">
+    <nav class="navigationbar">
       <ul>
         <li><a class="normal" href=" {{ url_for('.home') }}" id=" ">abstract</a></li>
         <li><a class="normal" href=" {{ url_for('.onevd_demo') }}" id="currentPage">1vd demo</a></li>
-        <li>2vd demo (coming)</li>
         <li><a class="normal" href=" {{ url_for('.paper') }}" id=" ">paper</a></li>
         <li>code (coming)</li>
       </ul>
