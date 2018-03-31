@@ -49,15 +49,21 @@ def onevd_demo():
     global params
     global chat, img_to_load, current_img_path, current_cap
     default_img = 'COCO_val2014_000000524382.jpg'
+    overscroll = 'column'
 
     if not vd_check_ok():
 	img_to_load = ( url_for('.static', filename=os.path.join('images', default_img)), '')
     	return render_template('flipdial_nomodel.html', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
 
     if request.method=='POST' and len(chat) < params['maxchatlen']:
+	if 'msgboxheight' in request.form.keys():
+	    overscroll = 'column-reverse'
+            if request.form['msgboxheight'] > 0:
+	        overscroll = 'column-reverse'
+        
         if 'reset' in request.form.keys():
             chat = []
-            return render_template('flipdial_1vd_demo.html', chat=chat, scroll='demo', autofocus='autofocus', questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
+            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], autofocus='autofocus', questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
             
         elif 'question' in request.form.keys():
             question = request.form['question']
@@ -70,7 +76,7 @@ def onevd_demo():
 
             item = (question, answers)
             chat.append(item)
-            return render_template('flipdial_1vd_demo.html', chat=chat, scroll='demo', autofocus='autofocus', questiontext='', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
+            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], autofocus='autofocus', questiontext='', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
         
         elif 'img_to_load' in request.form.keys(): # select image from panel
             
@@ -83,7 +89,7 @@ def onevd_demo():
             current_img_path = imgname
             img_to_load = ( url_for('.static', filename=os.path.join('images', imgname)), '' )
 
-            return render_template('flipdial_1vd_demo.html', chat=chat, scroll='demo', questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
+            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
 
         elif 'upload_img' in request.files.keys(): # upload own image
             
@@ -103,7 +109,7 @@ def onevd_demo():
             img_to_load = ( url_for('.static', filename=os.path.join('uploaded_images', unique_filename)), '' )
             # img_to_load = ( url_for('.static', filename=os.path.join('uploaded_images', unique_filename)), current_img_path )
             
-            return render_template('flipdial_1vd_demo.html', chat=chat, scroll='demo', questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
+            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
     else: #standard page load
 
         # empty chat
@@ -114,7 +120,7 @@ def onevd_demo():
         current_cap = params['caps'][default_img]
         
         img_to_load = ( url_for('.static', filename=os.path.join('images', default_img)), '' )
-        return render_template('flipdial_1vd_demo.html', chat=chat, questiontext="enter your question...", imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'] )
+        return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['', overscroll], questiontext="enter your question...", imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'] )
 
 @_flipdial.route('/2vd_demo')
 def twovd_demo():

@@ -27,11 +27,23 @@
   ga('send', 'pageview');
 </script>
 
-{% if scroll %}
-<script> document.location.hash = '#' + '{{ scroll }}'; </script>
+{% if scroll[0] %}
+<script> document.location.hash = '#' + '{{ scroll[0] }}'; </script>
 {% endif %}
 
-<script> $("#messagebox").animate({ scrollTop: $('#messagebox').prop("scrollHeight")}, 1000); </script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  var heightdiff = $("#messagetable").height() - $("#messagebox").height();
+  document.getElementById("msgboxheight").value = heightdiff;
+  var boxheight = $("#messagebox").height();
+  var tabheight = $("#messagetable").height();
+  //if (tabheight > boxheight) { document.getElementById("messagebox").style.flexDirection = "column-reverse";}
+  //$("#messagebox").scrollTop(tabheight);
+  //$("#messagebox").animate({scrollTop : tabheight }, 100);
+  //document.getElementsByTagName("html")[0].style.visibility = "visible";
+});
+</script>
 
 </head>
 
@@ -40,7 +52,7 @@
 	<header id="top">
     <a href="http://za.linkedin.com/pub/daniela-massiceti/66/422/425" target=_blank><img id="linkedin" src="{{ url_for('static', filename='socialmediaicons/linkedin.png')}}" width="30" height="30" title="linkedin" alt="linkedin"/></a>
     <a href="mailto:daniela@robots.ox.ac.uk" target="_top"><img id="mail" src="{{ url_for('static', filename='socialmediaicons/mail_newcolour.png')}}" width="30" height="30" title="mail: daniela@robots.ox.ac.uk" alt="mail"/></a>
-    <a href="https://www.twitter.com/DanniMassi/" target=_blank><img id="twitter" src="{{ url_for('static', filename='socialmediaicons/twitter.png')}}" width="30" height="30" title="twitter: @DanniMassi" alt="twitter"/></a>
+    <a href="https://www.twitter.com/DanniMassi/" target=_blank><img id="twitter" src="{{ url_for('static', filename='socialmediaicons/twitter.png')}}" width="30" height="30" title="twitter: @dannimassi" alt="twitter"/></a>
   </header>
    
   <div id="headerimg">
@@ -92,8 +104,12 @@
         </div>
     
         <div id="chatbox">
-          <div id="messagebox">
-            <table width=100%>
+	  <form method="post" enctype="multipart/form-data">
+		<input type="hidden" name="msgboxheight" id="msgboxheight" value="0"/>
+	   </form>
+
+	  <div id="messagebox" style="flex-direction: {{scroll[1]}}">
+            <table id="messagetable" width=100%>
               <tr>
                 <td><span><img src="{{ url_for('static', filename='tabby.ico') }}"></img>Hello! I'm a visual chat-bot. Pick an image and quiz me!</span></td>
                 <td></td>
