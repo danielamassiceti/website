@@ -104,10 +104,6 @@ $(document).ready(function() {
         </div>
     
         <div id="chatbox">
-	  <form method="post" enctype="multipart/form-data">
-		<input type="hidden" name="msgboxheight" id="msgboxheight" value="0"/>
-	   </form>
-
 	  <div id="messagebox" style="flex-direction: {{scroll[1]}}">
             <table id="messagetable" width=100%>
               <tr>
@@ -140,7 +136,8 @@ $(document).ready(function() {
         
           <div id="questionbox">
             <form method="post" enctype="multipart/form-data" >
-              <input id="questiontext" type="text" name="question" {{autofocus}} onClick="this.setSelectionRange(0, this.value.length)" value="{{questiontext}}">
+              <input id="questiontext" type="text" name="question" {{autofocus}} onClick="this.setSelectionRange(0, this.value.length)" value="{{questiontext}}"/>
+	      <input type="hidden" name="msgboxheight" id="msgboxheight" value="0"/>
             </form>
             <form method="post">
               <input id="resetbutton" type="image" name="reset" value="submitted" src="{{ url_for('.static', filename='icons/reset-undo.png')}}"</input>

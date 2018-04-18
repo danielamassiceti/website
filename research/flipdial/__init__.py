@@ -57,8 +57,7 @@ def onevd_demo():
 
     if request.method=='POST' and len(chat) < params['maxchatlen']:
 	if 'msgboxheight' in request.form.keys():
-	    overscroll = 'column-reverse'
-            if request.form['msgboxheight'] > 0:
+            if float(request.form['msgboxheight'])+50 > 0:
 	        overscroll = 'column-reverse'
         
         if 'reset' in request.form.keys():
@@ -100,14 +99,15 @@ def onevd_demo():
             img_file = request.files['upload_img']
             current_cap = 'PAD EOS'
             unique_filename = str(uuid.uuid4())
-            current_img_path = os.path.join(_flipdial.static_folder, 'uploaded_images', unique_filename)
+	    current_img_path = url_for('uploaded_image', unique_filename, _external=True)
+            #current_img_path = os.path.join('uploaded_images', unique_filename)
             while os.path.exists( current_img_path ):
             	unique_filename = str(uuid.uuid4())
-                current_img_path = os.path.join(_flipdial.static_folder, 'uploaded_images', unique_filename)
+	    	current_img_path = url_for('uploaded_image', unique_filename, _external=True)
+                #current_img_path = os.path.join('uploaded_images', unique_filename)
             img_file.save(current_img_path)
-	    current_img_path = url_for('.static', filename=os.path.join('uploaded_images', unique_filename))
-            img_to_load = ( url_for('.static', filename=os.path.join('uploaded_images', unique_filename)), '' )
-            # img_to_load = ( url_for('.static', filename=os.path.join('uploaded_images', unique_filename)), current_img_path )
+	    #current_img_path = url_for('uploaded_image', unique_filename, _external=True)
+            img_to_load = ( current_img_path, '' )
             
             return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
     else: #standard page load
@@ -121,6 +121,10 @@ def onevd_demo():
         
         img_to_load = ( url_for('.static', filename=os.path.join('images', default_img)), '' )
         return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['', overscroll], questiontext="enter your question...", imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'] )
+
+@_flipdial.route('/uploaded_image')
+def uploaded_image(filename):
+    return os.path.join('uploaded_images', filename)
 
 @_flipdial.route('/2vd_demo')
 def twovd_demo():
