@@ -4,3 +4,4 @@ server/visdial_resources/*.pt
 static/danielamassiceti_cv*.pdf
 research/flipdial/static/uploaded_images/*
 *.zip
+server/
