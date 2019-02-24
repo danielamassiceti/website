@@ -1,7 +1,5 @@
-server/visdial_resources/*.pth
-server/visdial_resources/*.pt
 *.pyc
 static/danielamassiceti_cv*.pdf
-research/flipdial/static/uploaded_images/*
 *.zip
 server/
+research/flipdial/static/uploaded_images/
