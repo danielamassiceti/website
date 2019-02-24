@@ -47,10 +47,10 @@
  	<hr id="tophr"> 
 	    <nav class="navigationbar">
     		<ul>
-          <li><a class="normal" href="{{ url_for('home') }}" id=" ">home</a></li>
-          <li><a class="normal" href="{{ url_for('about') }}" id=" ">about</a></li>
-          <li><a class="normal" href="{{ url_for('research') }}" id=" ">research</a> <a class="normal" href=" {{ url_for('.home') }}" id="currentPage">&middot flip-dial</a></li>
-          <li><a href="{{ url_for('static', filename='')}}{{ cv }}" target=_blank id=" ">cv</a></li>
+          	<li><a class="normal" href="{{ url_for('home') }}" id=" ">home</a></li>
+          	<li><a class="normal" href="{{ url_for('about') }}" id=" ">about</a></li>
+          	<li><a class="normal" href="{{ url_for('research') }}" id=" ">research</a> <a class="normal" href=" {{ url_for('.home') }}" id="currentPage">&middot flip-dial</a></li>
+          	<li><a href="{{ url_for('static', filename='')}}{{ cv }}" target=_blank id=" ">cv</a></li>
     		</ul>
       </nav>
   <hr id="demo">
@@ -65,13 +65,37 @@
     </div>
     <img class="abstractimg" src="{{ url_for('.static', filename='hook.svg') }}" alt=""/>
 
-	  <hr id="tophr2">
-    <nav class="navigationbar">
+    <ul class="project-list">
+	<li style="width: 560px">
+        <img src="{{ url_for('.static', filename='cvpr_flipdial_screenshot.png') }}" width="560" height="315" alt=""/>
+	<a href="https://www.youtube.com/embed/TBOnKekODCI?rel=0&amp;start=2020&amp;autoplay=1;" target="_blank" width="560" height="315">
+	    <span class="text-content" style="width: 560px; height: 315px">
+	    <span><big>cvpr 2018 oral</big></span>
+            </span>
+	</a>
+	</li>
+		
+    	<li style="width:560px">
+        <img src="{{ url_for('.static', filename='flipdial_slides_cover.png') }}" width="560" height="315" alt=""/>
+        <a href="{{ url_for('.static', filename='flipdial_cvpr2018_slides.pdf') }}" target="_blank" width="560" height="315">
+	    <span class="text-content" style="width: 560px; height: 315px">
+            <span><big>cvpr 2018 slides</big></span>
+      	    </span>
+        </a>
+	</li>
+    </ul>
+	
+<!-- <div id="play-video" onclick="this.nextElementSibling.style.display='block'; this.style.display='none'; this.nextElementSibling.children[0].src='https://www.youtube.com/embed/TBOnKekODCI?rel=0&amp;start=2020&amp;autoplay=1;'"><img src="{{ url_for('.static', filename='cvpr_flipdial_screenshot.png') }}" width="560" height="315" style="cursor:pointer" /></div><div style="display:none"><iframe id="video" width="560" height="315" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div><a href="{{ url_for('.static', filename='flipdial_cvpr2018_slides.pdf') }}"><img src="{{ url_for('.static', filename='flipdial_slides_cover.png') }}" width="560" height="315"</a> -->
+
+    <hr id="tophr2">
+    <nav class="navigationbar_x6 navigationbar">
       <ul>
         <li><a class="normal" href=" {{ url_for('.home') }}" id="currentPage">abstract</a></li>
         <li><a class="normal" href=" {{ url_for('.onevd_demo') }}" id=" ">1vd demo</a></li>
         <li><a class="normal" href=" {{ url_for('.paper') }}" id=" ">paper</a></li>
         <li>code (coming)</li>
+	<li><a class="normal" href=" {{ url_for('.static', filename='flipdial_cvpr2018_slides.pdf') }}" target="_blank">cvpr slides</a></li>
+	<li><a class="normal" href="https://www.youtube.com/watch?v=TBOnKekODCI#t=33m40s" target="_blank">cvpr oral</a></li>
       </ul>
     </nav>
     <hr id="bottomhr2">

@@ -4,6 +4,7 @@ from research.rfs_vs_nns import _rfs_vs_nns
 from research.bottom_up_top_down import _bottom_up_top_down
 from research import stereosonic_vision as sv
 from research import flipdial as fd
+from research import visdial_cca as vdc
 
 app = Flask(__name__)
 app.template_folder = os.path.join(app.root_path, 'templates')
@@ -16,6 +17,9 @@ app.register_blueprint(sv._stereosonic_vision, url_prefix='/research/stereosonic
 
 fd.set_global_params(config.cv, config.vd_host, config.vd_port)
 app.register_blueprint(fd._flipdial, url_prefix='/research/flipdial')
+
+vdc.set_cv(config.cv)
+app.register_blueprint(vdc._visdial_cca, url_prefix='/research/visdial_cca')
 
 @app.route('/')
 @app.route('/home')

@@ -62,7 +62,7 @@
 	font-variant: normal;
 	font-size: large;
 	display: inline-block;
-  width: 23%;
+  	width: 23%;
 	position: static;
 	padding-top: 3px;
 }
@@ -75,8 +75,8 @@
 .navigationbar ul  {
 	list-style: none;
 	text-align: center;
-  overflow: auto;
-  padding: 0px;
+  	overflow: auto;
+  	padding: 0px;
 }
 
 .navigationbar a:hover, .navigationbar a.normal:active, .navigationbar a.normal:focus   {
@@ -89,7 +89,11 @@
 }
 
 .navigationbar_x5 ul li {
-  width: 18%;
+  	width: 18%;
+}
+
+.navigationbar_x6 ul li {
+	width: 14%;
 }
 
 h1 {
@@ -109,7 +113,7 @@ h2 {
 	font-weight: 400;
 	color: #6B6B6B;
 	font-size: small;
-  margin-bottom: 10px;
+  	margin-bottom: 10px;
 }
 
 h3 {
