@@ -3,3 +3,5 @@ static/danielamassiceti_cv*.pdf
 *.zip
 server/
 research/flipdial/static/uploaded_images/
+*.json
+static/amturk_imgs

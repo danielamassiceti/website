@@ -2,8 +2,7 @@
 
 .side-by-side {
     display: inline-block;
-    width: 45%;
-    padding-left: 50px;
+    width: 35%;
     margin-bottom: 70px;
     vertical-align: top;
     horizontal-align: center;
@@ -130,83 +129,10 @@ h4 {
 	font-size: small;
 	color: #2A47C3;
 }
-/*#mainnav ul li  {
-	font-family: comfortaa;
-	font-style: normal;
-	font-weight: 400;
-	color: #BCBCBC;
-	font-variant: normal;
-	font-size: large;
-	display: inline;
-	text-decoration: none;
-}
-
-#mainnav ul  {
-	list-style: none;
-	text-align: center;
-	text-decoration: none;
-}
-
-#mainnav a   {
-	display: block;
-	float: left;
-	width: 25%;
-	text-decoration: none;
-	color: #A3A2A2;
-	position: static;
-	padding-top: 3px;
-}
-
-#mainnav a:hover, #mainnav a.normal:active  ,#mainnav a.normal:focus   {
-	color: #008080;
-	text-decoration: none;
-}
-
-#wrapper #mainnav #currentPage {
-	 color: #008080;
-}
-
-h1 {
-	font-family: comfortaa;
-	font-style: normal;
-	font-weight: 400;
-	font-size: large;
-	font-variant: normal;
-	text-align: left;
-	color: #008080;
-	padding-top: 20px;
-	padding-bottom: 5px;
-}
-
-h2 {
-	font-family: comfortaa;
-	font-style: normal;
-	font-weight: 400;
-	color: #6B6B6B;
-	text-decoration: underline;
-	font-size: medium;
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-
-h3 {
-	color: #6B6B6B;
-	text-decoration: underline;
-	font-size: small;
-	font-weight: normal;
-}
-
-h4 {
-	font-family: comfortaa;
-	font-style: normal;
-	font-weight: 700;
-	font-size: small;
-	color: #2A47C3;
-}*/
 
 #wrapper #mainbody {
 	text-align: center;
-	font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-style: normal;
 	font-weight: 200;
 	line-height: 210%;
@@ -299,7 +225,7 @@ ul.project-list li {
 }
 
 ul.img-list span.text-content {
-	font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-size: medium;
 	background: rgba(0,0,0,0.35);
 	color: white;
@@ -318,9 +244,9 @@ ul.img-list span.text-content {
 }
  
 ul.project-list span.text-content {
-	font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-size: medium;
-	background: rgba(0,0,0,0.5);
+	background: rgba(0,0,0,0.65);
 	color: white;
 	cursor: pointer;
 	display: table;
@@ -390,3 +316,18 @@ hr {
   width: 85%;
   margin: 20px auto 40px auto;
 }
+
+.abstractfig { 
+  margin: 20px auto 40px auto;
+  font-size: 80%;
+  line-height: 120%;
+  font-weight: bold;
+}
+
+#recentnews {
+  text-align: left;
+  width: 50%;
+  margin: auto;
+  font-weight: 500;
+}
+

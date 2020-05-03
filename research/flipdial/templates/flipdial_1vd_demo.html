@@ -12,8 +12,8 @@
 
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa" />
 
-<meta name="keywords" content="daniela massiceti, university of oxford, phd student, phil torr, torr vision group, computer vision, oxford">
-<meta name="description" content="daniela massiceti // computer vision PhD student" />
+<meta name="keywords" content="{{ mykeywords }}" />
+<meta name="description" content="daniela massiceti" />
 <meta name="p:domain_verify" content="15f149f4e12ce0bf04ad541a6e0d8a62"/>
 <meta property="og:image" content="{{ url_for('static', filename='robotgirl_onecolor.png') }}" />
 
@@ -50,8 +50,9 @@ $(document).ready(function() {
 <body>
 <div id="wrapper">
 	<header id="top">
+    <a href="https://scholar.google.com/citations?user=-4fo-SwAAAAJ&hl=en" target=_blank><img id="googlescholar" src="{{ url_for('static', filename='socialmediaicons/gscholar.svg')}}" width="30" height="30" title="google scholar" alt="google scholar"/></a>
     <a href="http://za.linkedin.com/pub/daniela-massiceti/66/422/425" target=_blank><img id="linkedin" src="{{ url_for('static', filename='socialmediaicons/linkedin.png')}}" width="30" height="30" title="linkedin" alt="linkedin"/></a>
-    <a href="mailto:daniela@robots.ox.ac.uk" target="_top"><img id="mail" src="{{ url_for('static', filename='socialmediaicons/mail_newcolour.png')}}" width="30" height="30" title="mail: daniela@robots.ox.ac.uk" alt="mail"/></a>
+    <a href="mailto:daniela.massiceti@gmail.com" target="_top"><img id="mail" src="{{ url_for('static', filename='socialmediaicons/mail_newcolour.png')}}" width="30" height="30" title="mail: daniela.massiceti@gmail.com" alt="mail"/></a>
     <a href="https://www.twitter.com/DanniMassi/" target=_blank><img id="twitter" src="{{ url_for('static', filename='socialmediaicons/twitter.png')}}" width="30" height="30" title="twitter: @dannimassi" alt="twitter"/></a>
   </header>
    
@@ -59,7 +60,7 @@ $(document).ready(function() {
     <a href="{{ url_for('home') }}">
       <div class = "h">Daniela Massiceti</div>
     </a>
-	<div class ="subh">D.Phil Student in Computer Vision, University of Oxford </div>
+    <div class ="subh"> {{ jobtitle }} </div>
   </div>
  	<hr id="tophr"> 
 	    <nav class="navigationbar">
@@ -150,18 +151,19 @@ $(document).ready(function() {
 
 
 	  <hr id="tophr2">
-    <nav class="navigationbar">
+    <nav class="navigationbar_x5 navigationbar">
       <ul>
         <li><a class="normal" href=" {{ url_for('.home') }}" id=" ">abstract</a></li>
         <li><a class="normal" href=" {{ url_for('.onevd_demo') }}" id="currentPage">1vd demo</a></li>
         <li><a class="normal" href=" {{ url_for('.paper') }}" id=" ">paper</a></li>
-        <li>code (coming)</li>
+	<li><a class="normal" href=" {{ url_for('.static', filename='flipdial_cvpr2018_slides.pdf') }}" target="_blank">cvpr slides</a></li>
+	<li><a class="normal" href="https://www.youtube.com/watch?v=TBOnKekODCI#t=33m40s" target="_blank">cvpr oral</a></li>
       </ul>
     </nav>
     <hr id="bottomhr2">
 
   	<div id="footerwrapper">
-		  <div id="email"> daniela_at_robots.ox.ac.uk </div>
+		  <div id="email"> daniela_dot_massiceti_at_gmail_dot_com </div>
       <img src="{{ url_for('static', filename='robotgirl.png') }}" alt=""/>
 	  </div>
   </div>

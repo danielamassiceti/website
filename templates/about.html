@@ -11,8 +11,8 @@
 
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa" />
 
-<meta name="keywords" content="daniela massiceti, university of oxford, phd student, phil torr, torr vision group, computer vision, oxford">
-<meta name="description" content="daniela massiceti // computer vision PhD student" />
+<meta name="keywords" content="{{ mykeywords }}"/>
+<meta name="description" content="daniela massiceti" />
 <meta name="p:domain_verify" content="15f149f4e12ce0bf04ad541a6e0d8a62"/>
 
 </head>
@@ -20,49 +20,43 @@
 <body>
 <div id="wrapper">
 	<header id="top">
+    <a href="https://scholar.google.com/citations?user=-4fo-SwAAAAJ&hl=en" target=_blank><img id="googlescholar" src="{{ url_for('static', filename='socialmediaicons/gscholar.svg')}}" width="30" height="30" title="google scholar" alt="google scholar"/></a>
     <a href="http://za.linkedin.com/pub/daniela-massiceti/66/422/425" target=_blank><img id="linkedin" src="{{ url_for('static', filename='socialmediaicons/linkedin.png')}}" width="30" height="30" title="linkedin" alt="linkedin"/></a>
-    <a href="mailto:daniela@robots.ox.ac.uk" target="_top"><img id="mail" src="{{ url_for('static', filename='socialmediaicons/mail_newcolour.png')}}" width="30" height="30" title="mail: daniela@robots.ox.ac.uk" alt="mail"/></a>
+    <a href="mailto:daniela.massiceti@gmail.com" target="_top"><img id="mail" src="{{ url_for('static', filename='socialmediaicons/mail_newcolour.png')}}" width="30" height="30" title="mail: daniela.massiceti@gmail.com" alt="mail"/></a>
     <a href="https://www.twitter.com/DanniMassi/" target=_blank><img id="twitter" src="{{ url_for('static', filename='socialmediaicons/twitter.png')}}" width="30" height="30" title="twitter: @dannimassi" alt="twitter"/></a>
-  	</header>
+  </header>
    
   <div id="headerimg">
     <a href="{{ url_for('home') }}">
       <div class = "h">Daniela Massiceti</div>
     </a>
-	  <div class ="subh">D.Phil Student in Computer Vision, University of Oxford </div>
+    <div class ="subh"> {{ jobtitle }} </div>
   </div>
- 	<hr id="tophr"> 
-	<nav class="navigationbar">
-    		<ul>
+  <hr id="tophr"> 
+  <nav class="navigationbar">
+    	<ul>
           <li><a class="normal" href="{{ url_for('home') }}" id=" ">home</a></li>
           <li><a class="normal" href="{{ url_for('about') }}" id="currentPage">about</a></li>
           <li><a class="normal" href="{{ url_for('research') }}" id=" ">research</a></li>
           <li><a href="{{ url_for('static', filename='')}}{{ cv }}" target=_blank id=" ">cv</a></li>
-    		</ul>
-  	</nav>
-	<hr id="bottomhr">
-  	<div id="mainbody">
-  		<div class="side-by-side">
+    	</ul>
+  </nav>
+  <hr id="bottomhr">
+  <div id="mainbody">
+  	<div class="side-by-side">
 		<p> Hello people of the inter-webs! </p>
-		<p> 	I am a doctoral student in the <span><a href="http://www.robots.ox.ac.uk/~tvg/" target=_blank>Torr Vision Group</a></span> at the University of Oxford under the supervision of <span><a href="http://www.robots.ox.ac.uk/~phst" target=_blank>Professor Philip Torr</a></span> and <span><a href="http://www.oxsight.co" target=_blank>Dr Stephen Hicks</a></span>.
-			Prior to this, I completed a <i>M.Sc Neuroscience</i> at the University of Oxford, and before that a <i>B.Sc Electrical and Computer Engineering</i> at the University of Cape Town, South Africa.
+		<p> I am a machine learning researcher at <a href="https://www.microsoft.com/en-us/research/people/t-dmassi/" target="_blank">Microsoft Research (MSR) Cambridge</a>. My work explores how machine learning can help people with vision impairment. I am particularly interested in how models can be made more robust to real-world scenarios – for example, when only a small amount of training data is available, or the data are poor quality (e.g. blurry images, poor view points). Solving these challenges will enable us to build robust human-in-the-loop systems, where visually-impaired users can provide a small amount of training data themselves, and the system can then be personalised to their everyday interactions on-the-fly.</p>
+
+		<p> Prior to joining MSR, I did my D.Phil in computer vision at the University of Oxford under <a href="https://www.robots.ox.ac.uk/~tvg" target="_blank">Prof. Philip Torr</a> and <a href="https://www.oxsight.co.uk" target="_blank">Dr Stephen Hicks</a>, my Masters in Neuroscience also at the University of Oxford, and my Bachelors in Electrical and Computer Engineering at the University of Cape Town. I am passionate about diversity and inclusion in machine learning, and am an organiser of the <a href="https://www.deeplearningindaba.com" target="_blank">Deep Learning Indaba</a>.
 		</p>
-		<p>
-			Broadly speaking, I am interested in multi-modal representations of the world and how these can be used by AI systems.	
-			I am primarily exploring the combinations of vision and language in the context of vision-based dialogue models for human-computer interfaces. One of my central motivations for contextualising these dialogues in real-world visual scenarios is toward building AI-based assistive devices to help blind and visually-impaired people. 
-			I have also dabbled in some other multi-modal combinations. Crossing vision with audio, I prototyped a <a href="{{ url_for('stereosonic_vision.home') }}">device</a> which created 3D soundscapes of virtual environments for audio-only spatial navigation!
-		</p>
-		<p>
-			I am also a graduate member of <span><a href="http://www.pmb.ox.ac.uk/" target=_blank>Pembroke College</a></span> which is famed for being pink lightning at rowing regattas!
-		</p>
-  		</div>
-      <div class="side-by-side"> <img id="me" src="{{ url_for('static', filename='about_photo.jpg') }}" width="335" style="padding-left: 43px;"/> </div>
+  	</div>
+      	<div class="side-by-side"> <img id="me" src="{{ url_for('static', filename='about_photo.jpg') }}" width="335"/> </div>
   	</div>
   
-  	<div id="footerwrapper">
-		<div id="email"> daniela_at_robots.ox.ac.uk </div>
-    <img src="{{ url_for('static', filename='robotgirl.png') }}" alt=""/>
-	</div>
+  <div id="footerwrapper">
+	<div id="email"> daniela_dot_massiceti_at_gmail_dot_com </div>
+  <img src="{{ url_for('static', filename='robotgirl.png') }}" alt=""/>
+  </div>
   </div>
 </div>
 </body>

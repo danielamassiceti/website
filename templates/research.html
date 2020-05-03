@@ -11,8 +11,8 @@
 
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa" />
 
-<meta name="keywords" content="daniela massiceti, university of oxford, phd student, phil torr, torr vision group, computer vision, oxford">
-<meta name="description" content="daniela massiceti // computer vision PhD student" />
+<meta name="keywords" content="{{ mykeywords }}"/>
+<meta name="description" content="daniela massiceti" />
 <meta name="p:domain_verify" content="15f149f4e12ce0bf04ad541a6e0d8a62"/>
 
 <script>
@@ -31,8 +31,9 @@
 <body>
 <div id="wrapper">
   <header id="top">
+    <a href="https://scholar.google.com/citations?user=-4fo-SwAAAAJ&hl=en" target=_blank><img id="googlescholar" src="{{ url_for('static', filename='socialmediaicons/gscholar.svg')}}" width="30" height="30" title="google scholar" alt="google scholar"/></a>
     <a href="http://za.linkedin.com/pub/daniela-massiceti/66/422/425" target=_blank><img id="linkedin" src="{{ url_for('static', filename='socialmediaicons/linkedin.png')}}" width="30" height="30" title="linkedin" alt="linkedin"/></a>
-    <a href="mailto:daniela@robots.ox.ac.uk" target="_top"><img id="mail" src="{{ url_for('static', filename='socialmediaicons/mail_newcolour.png')}}" width="30" height="30" title="mail: daniela@robots.ox.ac.uk" alt="mail"/></a>
+    <a href="mailto:daniela.massiceti@gmail.com" target="_top"><img id="mail" src="{{ url_for('static', filename='socialmediaicons/mail_newcolour.png')}}" width="30" height="30" title="mail: daniela.massiceti@gmail.com" alt="mail"/></a>
     <a href="https://www.twitter.com/DanniMassi/" target=_blank><img id="twitter" src="{{ url_for('static', filename='socialmediaicons/twitter.png')}}" width="30" height="30" title="twitter: @dannimassi" alt="twitter"/></a>
   </header>
   
@@ -40,7 +41,7 @@
     <a href="{{ url_for('home') }}">
       <div class = "h">Daniela Massiceti</div>
     </a>
-	  <div class ="subh">D.Phil Student in Computer Vision, University of Oxford </div>
+    <div class ="subh"> {{ jobtitle }} </div>
   </div>
   <hr id="tophr">
 	<nav class="navigationbar">
@@ -53,74 +54,81 @@
   	</nav>
    <hr id="bottomhr">
   <div id="mainbody">
-  <h1>Interests</h1>
-  <h2 style="margin:0px"><b>Computer vision & natural language processing</b><br> generative models, multi-modal embeddings, conversational/dialogue AI, human-computer interfaces, visual/language grounding, semantic understanding of images</h2>
-  <h2 style="margin:0px"><b>Neuroscience</b><br> visual prosthetics, multi-sensory integration, cross-sensory modality synaptic plasticity</h2>
-  <h2 style="margin:0px"><b>Applications</b><br> assistive technologies, machine learning for healthcare, AI-generated art/design</h2>
-    
   <h1>Publications</h1>
 	<ul class="project-list">
 	<li>
+	<img src="{{ url_for('geneval_visdial.static', filename='geneval_visdial.png') }}" width="500" height="365" alt=""/>
+        <a href="{{ url_for('geneval_visdial.home') }}">
+		<span class="text-content">
+        	<span>
+		<big><i>A Revised Generative Evaluation of Visual Dialogue</i></big> <br><br><u>Daniela Massiceti</u>, Viveka Kulharia, Puneet K. Dokania<br>N. Siddharth, Philip H.S. Torr
+          	<br><br><i></i><br><br>
+		</span>
+        	</span>
+      	</a>
+	</li>
+
+	<li>
 	<img src="{{ url_for('visdial_cca.static', filename='visdial_cca.jpg') }}" width="500" height="365" alt=""/>
         <a href="{{ url_for('visdial_cca.home') }}">
-		  <span class="text-content">
-        <span>
-		<big><i>Visual Dialogue without Vision or Dialogue</i></big> <br><br><u>Daniela Massiceti*</u>, Puneet K. Dokania*, N. Siddharth*, <br>Philip H.S. Torr
-          <br><br><i>Critiquing and Correcting Trends in Machine Learning Workshop at Conference on Neural Information Processing Systems (NeurIPS) 2018</i><br><br>
-		      </span>
-        </span>
-      </a>
-		</li>
+		<span class="text-content">
+        	<span>
+		<big><i>Visual Dialogue without Vision or Dialogue</i></big> <br><br><u>Daniela Massiceti*</u>, Puneet K. Dokania*, N. Siddharth*<br>Philip H.S. Torr
+          	<br><br><i>Critiquing and Correcting Trends in Machine Learning Workshop at Conference on Neural Information Processing Systems (NeurIPS) 2018</i><br><br>
+		</span>
+        	</span>
+      	</a>
+	</li>
 
-		<li>
-      <img src="{{ url_for('flipdial.static', filename='flipdial.svg') }}" width="500" height="365" alt=""/>
-      <a href="{{ url_for('flipdial.home') }}">
-		  <span class="text-content">
-        <span>
-		      <big><i>FlipDial: A Generative Model for Two-Way Visual Dialogue</i></big> <br><br><u>Daniela Massiceti</u>, N. Siddharth, Puneet K. Dokania<br>Philip H.S. Torr
-          <br><br><i>IEEE Conference on Computer Vision & Pattern Recognition (CVPR) 2018</i><br><br>
-		      </span>
-        </span>
-      </a>
-		</li>
+	<li>
+      	<img src="{{ url_for('flipdial.static', filename='flipdial.svg') }}" width="500" height="365" alt=""/>
+      	<a href="{{ url_for('flipdial.home') }}">
+		<span class="text-content">
+        	<span>
+		<big><i>FlipDial: A Generative Model for Two-Way Visual Dialogue</i></big> <br><br><u>Daniela Massiceti</u>, N. Siddharth, Puneet K. Dokania<br>Philip H.S. Torr
+          	<br><br><i>IEEE Conference on Computer Vision & Pattern Recognition (CVPR) 2018</i><br><br>
+		</span>
+        	</span>
+      	</a>
+	</li>
 		
-    <li>
-      <img src="{{ url_for('rfs_vs_nns.static', filename='rfs_vs_nns_for_camera_localization.png') }}" width="500" height="365" alt=""/>
-      <a href="https://arxiv.org/abs/1609.05797">
-		  <span class="text-content">
-        <span>
-		      <big><i>Random Forests versus Neural Networks - What’s Best for Camera Relocalization?</i></big> <br><br><u>Daniela Massiceti</u>, Alexander Krull, Eric Brachmann,<br>Carsten Rother, Philip H.S. Torr <br><br><i>IEEE Conference on Robotics & Automation (ICRA) 2017</i><br><br>
-		    </span>
-      </span>
-      </a>
-		</li>
+    	<li>
+      	<img src="{{ url_for('rfs_vs_nns.static', filename='rfs_vs_nns_for_camera_localization.png') }}" width="500" height="365" alt=""/>
+      	<a href="https://arxiv.org/abs/1609.05797">
+		<span class="text-content">
+        	<span>
+		<big><i>Random Forests versus Neural Networks - What’s Best for Camera Relocalization?</i></big> <br><br><u>Daniela Massiceti</u>, Alexander Krull, Eric Brachmann<br>Carsten Rother, Philip H.S. Torr <br><br><i>IEEE Conference on Robotics & Automation (ICRA) 2017</i><br><br>
+		</span>
+      		</span>
+      	</a>
+	</li>
 		
-		<li>
-      <img src="{{ url_for('bottom_up_top_down.static', filename='bottom_up_top_down_weakly_supervised_semantic_segmentation.jpg') }}" width="500" height="365" alt=""/>
-      <a href="https://arxiv.org/abs/1612.02101">
-		  <span class="text-content">
-        <span>
-          <big><i>Bottom-Up Top-Down Cues for Weakly-Supervised Semantic Segmentation</i></big> <br><br>Qibin Hou*, <u>Daniela Massiceti</u>*, Puneet K. Dokania, Yunchao Wei, Ming-Ming Cheng, Philip H.S. Torr<br><br><i>International Conference on Energy Minimization Methods in Computer Vision and Pattern Recognition (EMMCVPR) 2017</i><br><br>
-		    </span>
-      </span>
-      </a>
-		</li>
+	<li>
+      	<img src="{{ url_for('bottom_up_top_down.static', filename='bottom_up_top_down_weakly_supervised_semantic_segmentation.jpg') }}" width="500" height="365" alt=""/>
+      	<a href="https://arxiv.org/abs/1612.02101">
+		<span class="text-content">
+        	<span>
+          	<big><i>Bottom-Up Top-Down Cues for Weakly-Supervised Semantic Segmentation</i></big> <br><br>Qibin Hou*, <u>Daniela Massiceti</u>*, Puneet K. Dokania, Yunchao Wei, Ming-Ming Cheng, Philip H.S. Torr<br><br><i>International Conference on Energy Minimization Methods in Computer Vision and Pattern Recognition (EMMCVPR) 2017</i><br><br>
+		</span>
+      		</span>
+      	</a>
+	</li>
 		
-		<li>
-      <img src="{{ url_for('stereosonic_vision.static', filename='stereosonic_vision.jpg') }}" width="500" height="365" alt=""/>
-      <a href="{{ url_for('stereosonic_vision.home') }}">
-		  <span class="text-content">
-        <span>
-          <big><i>Stereosonic Vision: exploring visual-to-auditory sensory substitution mappings in an immersive virtual reality navigation paradigm</i></big> <br><br><u>Daniela
-            Massiceti</u>, Stephen L. Hicks, Joram J. van Rheede<br><br><i>Public Library of Science (PLOSONE) 2018</i><br><br>
-        </span>
-      </span>
-      </a>
-		</li>
+	<li>
+      	<img src="{{ url_for('stereosonic_vision.static', filename='stereosonic_vision.jpg') }}" width="500" height="365" alt=""/>
+      	<a href="{{ url_for('stereosonic_vision.home') }}">
+		<span class="text-content">
+        	<span>
+          	<big><i>Stereosonic Vision: exploring visual-to-auditory sensory substitution mappings in an immersive virtual reality navigation paradigm</i></big> <br><br><u>Daniela
+            	Massiceti</u>, Stephen L. Hicks, Joram J. van Rheede<br><br><i>Public Library of Science (PLOSONE) 2018</i><br><br>
+        	</span>
+      		</span>
+      	</a>
+	</li>
 	</ul>    
 </div>	
   <div id="footerwrapper">
-	<div id="email"> daniela_at_robots.ox.ac.uk </div>
+	<div id="email"> daniela_dot_massiceti_at_gmail_dot_com </div>
   <img src="{{ url_for('static', filename='robotgirl.png') }}" alt=""/>
   </div>
   </div>

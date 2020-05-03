@@ -7,7 +7,7 @@ _flipdial = Blueprint('flipdial', __name__, template_folder='templates', static_
 global params
 global chat, img_to_load, current_img_path, current_cap
 
-def set_global_params(cv_path, vd_host, vd_port):
+def set_global_params(cv_path, title, keywords, vd_host, vd_port):
     global params, chat
     params = {}
     params['maxchatlen'] = 10
@@ -16,6 +16,8 @@ def set_global_params(cv_path, vd_host, vd_port):
     params['cv'] = cv_path
     params['vd_host'] = vd_host
     params['vd_port'] = vd_port
+    params['title'] = title
+    params['keywords'] = keywords
     chat = []
 
 def get_server_address():
@@ -52,7 +54,7 @@ def ravel_answers(answers):
 @_flipdial.route('/', methods=['GET', 'POST'])
 def home():
     global params
-    return render_template('flipdial.html', cv=params['cv'])
+    return render_template('flipdial.html', cv=params['cv'], jobtitle=params['title'], mykeywords=params['keywords'])
 
 @_flipdial.route('/1vd_demo', methods=['GET', 'POST'])
 def onevd_demo():
@@ -64,7 +66,7 @@ def onevd_demo():
     if not vd_check_ok():
 	current_img_path = os.path.join('images', default_img)
 	img_to_load = ( url_for('flipdial.static', filename=os.path.join('images', default_img)), params['caps'][default_img])
-    	return render_template('flipdial_nomodel.html', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
+    	return render_template('flipdial_nomodel.html', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'], jobtitle=params['title'], mykeywords=params['keywords'])
 
     if request.method=='POST' and len(chat) < params['maxchatlen']:
 	if 'msgboxheight' in request.form.keys():
@@ -73,7 +75,7 @@ def onevd_demo():
         
         if 'reset' in request.form.keys():
             chat = []
-            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], autofocus='autofocus', questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
+            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], autofocus='autofocus', questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'], jobtitle=params['title'], mykeywords=params['keywords'])
             
         elif 'question' in request.form.keys():
             question = request.form['question']
@@ -86,7 +88,7 @@ def onevd_demo():
 
             item = (question, answers)
             chat.append(item)
-            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], autofocus='autofocus', questiontext='', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
+            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], autofocus='autofocus', questiontext='', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'], jobtitle=params['title'], mykeywords=params['keywords'])
         
         elif 'img_to_load' in request.form.keys(): # select image from panel
             
@@ -99,7 +101,7 @@ def onevd_demo():
             current_cap = params['caps'][imgname]
             img_to_load = ( get_preloaded_image_url(imgname), current_cap )
 
-            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
+            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'], jobtitle=params['title'], mykeywords=params['keywords'])
 
         elif 'upload_img' in request.files.keys(): # upload own image
             
@@ -114,7 +116,7 @@ def onevd_demo():
 	    current_cap = ''
             img_to_load = ( get_uploaded_image_url(r.text) , '' )
 
-            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
+            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'], jobtitle=params['title'], mykeywords=params['keywords'])
     else: #standard page load
 
         # empty chat
@@ -125,7 +127,7 @@ def onevd_demo():
         current_cap = params['caps'][default_img]        
         img_to_load = ( get_preloaded_image_url(default_img), current_cap )
 
-	return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['', overscroll], questiontext="enter your question...", imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'] )
+	return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['', overscroll], questiontext="enter your question...", imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'], jobtitle=params['title'], mykeywords=params['keywords'])
 
 @_flipdial.route('/active_dev', methods=['GET', 'POST'])
 def active_dev():
@@ -137,7 +139,7 @@ def active_dev():
     if not vd_check_ok():
 	current_img_path = os.path.join('images', default_img)
 	img_to_load = ( get_preloaded_image_url(default_img), params['caps'][default_img])
-    	return render_template('flipdial_nomodel.html', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
+    	return render_template('flipdial_nomodel.html', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'], jobtitle=params['title'], mykeywords=params['keywords'])
 
     if request.method=='POST' and len(chat) < params['maxchatlen']:
 	if 'msgboxheight' in request.form.keys():
@@ -146,7 +148,7 @@ def active_dev():
         
         if 'reset' in request.form.keys():
             chat = []
-            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], autofocus='autofocus', questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
+            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], autofocus='autofocus', questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'], jobtitle=params['title'], mykeywords=params['keywords'])
             
         elif 'question' in request.form.keys():
             question = request.form['question']
@@ -159,7 +161,7 @@ def active_dev():
 
             item = (question, answers)
             chat.append(item)
-            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], autofocus='autofocus', questiontext='', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
+            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], autofocus='autofocus', questiontext='', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'], jobtitle=params['title'], mykeywords=params['keywords'])
         
         elif 'img_to_load' in request.form.keys(): # select image from panel
             
@@ -172,7 +174,7 @@ def active_dev():
             current_cap = params['caps'][imgname]
             img_to_load = ( get_preloaded_image_url(imgname), current_cap )
 
-            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
+            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'], jobtitle=params['title'], mykeywords=params['keywords'])
 
         elif 'upload_img' in request.files.keys(): # upload own image
             
@@ -187,7 +189,7 @@ def active_dev():
 	    current_cap = ''
             img_to_load = ( get_uploaded_image_url(r.text) , '' )
 
-            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'])
+            return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['demo', overscroll], questiontext='enter your question...', imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'], jobtitle=params['title'], mykeywords=params['keywords'])
     else: #standard page load
 
         # empty chat
@@ -198,7 +200,7 @@ def active_dev():
         current_cap = params['caps'][default_img]        
         img_to_load = ( get_preloaded_image_url(default_img), current_cap )
 
-	return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['', overscroll], questiontext="enter your question...", imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'] )
+	return render_template('flipdial_1vd_demo.html', chat=chat, scroll=['', overscroll], questiontext="enter your question...", imgs=params['imglist'], img_to_load=img_to_load, cv=params['cv'], jobtitle=params['title'], mykeywords=params['keywords'])
 
 def get_uploaded_image_url(filename):
     image_url = get_server_address() + '/get_uploaded_image?'
@@ -214,10 +216,6 @@ def get_preloaded_image_url(filename):
 @_flipdial.route('/stem4britain_poster')
 def stem4britain_poster():
     return send_from_directory(_flipdial.static_folder, 'flipdial_stem4britainposter.pdf')
-
-@_flipdial.route('/2vd_demo')
-def twovd_demo():
-    return render_template('flipdial_2vd_demo.html')
 
 @_flipdial.route('/paper')
 def paper():
